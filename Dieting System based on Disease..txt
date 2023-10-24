@@ -1,0 +1,26 @@
+% Facts about foods and their nutritional values.
+food(carrot, low_calorie, low_sugar, low_fat, low_salt).
+food(apple, low_calorie, low_sugar, low_fat, low_salt).
+food(chocolate, high_calorie, high_sugar, high_fat, low_salt).
+food(potato_chips, high_calorie, low_sugar, high_fat, high_salt).
+
+% Dietary guidelines for diabetes.
+diabetes_diet(Food) :-
+    food(Food, low_calorie, low_sugar, low_fat, low_salt).
+
+% Dietary guidelines for hypertension.
+hypertension_diet(Food) :-
+    food(Food, low_calorie, low_sugar, low_fat, high_salt).
+
+% Queries to suggest diet based on disease.
+suggest_diet(diabetes, Food) :- diabetes_diet(Food).
+suggest_diet(hypertension, Food) :- hypertension_diet(Food).
+
+% Example queries
+% For diabetes:
+% ?- suggest_diet(diabetes, Food).
+% Output: Food = carrot ; Food = apple.
+
+% For hypertension:
+% ?- suggest_diet(hypertension, Food).
+% Output: Food = apple.

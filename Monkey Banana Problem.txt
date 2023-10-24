@@ -1,0 +1,23 @@
+% Initial state: monkey is on the floor, chair is not at the banana, monkey has not yet eaten the banana.
+initial_state(state(at_floor, at_door, at_banana, has_not_eaten)).
+
+% Define possible actions to be taken.
+% The monkey can move, the chair can be moved, and the monkey can climb.
+% Monkey moves from floor to chair.
+move(state(at_floor, at_door, at_banana, has_not_eaten), move(monkey, from_floor_to_chair), state(at_chair, at_door, at_banana, has_not_eaten)).
+
+% Monkey moves from chair to floor.
+move(state(at_chair, at_door, at_banana, has_not_eaten), move(monkey, from_chair_to_floor), state(at_floor, at_door, at_banana, has_not_eaten)).
+
+% Monkey climbs the chair to reach the banana.
+move(state(at_chair, at_door, at_banana, has_not_eaten), move(monkey, climb_chair_to_reach_banana), state(at_chair, at_door, at_banana, has_eaten)).
+
+% Chair can be moved from door to banana.
+move(state(at_floor, at_door, at_banana, has_not_eaten), move(chair, from_door_to_banana), state(at_floor, at_banana, at_banana, has_not_eaten)).
+
+% Query to check if the given sequence of moves leads to the monkey eating the banana.
+% Example query: solve(state(at_floor, at_door, at_banana, has_not_eaten), Solution).
+solve(State, []) :- State = state(_, _, _, has_eaten).
+solve(State1, [Move|Rest]) :-
+    move(State1, Move, State2),
+    solve(State2, Rest).

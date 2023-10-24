@@ -1,0 +1,14 @@
+% Facts representing relationships between students, teachers, subjects, and subject codes.
+teacher(teacher1, math).
+teacher(teacher2, science).
+teacher(teacher3, history).
+
+student(student1, math, code101).
+student(student2, science, code102).
+student(student3, history, code103).
+student(student4, math, code104).
+
+% Query to find the teacher of a student for a particular subject code.
+teacher_of_student(Student, SubjectCode, Teacher) :-
+    student(Student, Subject, SubjectCode),
+    teacher(Teacher, Subject).

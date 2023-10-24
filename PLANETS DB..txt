@@ -1,0 +1,19 @@
+% Facts representing the planets in our solar system.
+planet(mercury, 57.9, 4879).
+planet(venus, 108.2, 12104).
+planet(earth, 149.6, 12742).
+planet(mars, 227.9, 6779).
+planet(jupiter, 778.3, 139822).
+planet(saturn, 1427.0, 116464).
+planet(uranus, 2871.0, 50724).
+planet(neptune, 4497.1, 49244).
+
+% Query to find the distance from the sun for a specific planet.
+distance_from_sun(Planet, Distance) :- planet(Planet, Distance, _).
+
+% Query to find the diameter of a specific planet.
+planet_diameter(Planet, Diameter) :- planet(Planet, _, Diameter).
+
+% Query to find planets with a diameter greater than a given value.
+planets_with_diameter_greater_than(Diameter, Planets) :-
+    findall(Planet, (planet(Planet, _, D), D > Diameter), Planets).

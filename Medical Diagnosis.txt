@@ -1,0 +1,23 @@
+% Define some medical facts.
+symptom(john, fever).
+symptom(john, cough).
+symptom(jane, sore_throat).
+symptom(jane, fever).
+symptom(mary, cough).
+symptom(mary, fatigue).
+
+% Define some rules for diagnosing illnesses based on symptoms.
+diagnose(X, cold) :-
+    symptom(X, cough),
+    symptom(X, sore_throat).
+
+diagnose(X, flu) :-
+    symptom(X, fever),
+    symptom(X, fatigue).
+
+diagnose(X, unknown) :-
+    \+ diagnose(X, cold),
+    \+ diagnose(X, flu).
+
+% Query to diagnose illnesses based on symptoms.
+diagnosis(X, Illness) :- diagnose(X, Illness).

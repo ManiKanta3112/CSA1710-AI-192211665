@@ -1,0 +1,10 @@
+% Rules defining relationships.
+likes(john, apples).
+likes(mary, oranges).
+likes(john, X) :- likes(mary, X).
+
+% Forward chaining inference rule.
+infer_likes(X) :- likes(Y, X), write(Y), write(' also likes '), write(X), nl, assert(likes(Y, X)).
+
+% Example query for forward chaining.
+?- infer_likes(bananas).

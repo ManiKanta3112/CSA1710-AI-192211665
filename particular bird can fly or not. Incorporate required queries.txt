@@ -1,0 +1,10 @@
+% Facts about birds and their ability to fly.
+bird(penguin, cannot_fly).
+bird(sparrow, can_fly).
+bird(ostrich, cannot_fly).
+bird(eagle, can_fly).
+
+% Query to check if a specific bird can fly.
+can_fly(Bird) :- bird(Bird, can_fly).
+
+cannot_fly(Bird) :- bird(Bird, cannot_fly).
